@@ -23,6 +23,8 @@ public:
         this->size = d.size;
         this->nIdx = d.nIdx;
     }
+    
+    //inserting elements in this array
     void add(int num){
         if(nIdx+1>size){
             /* ---logic---
@@ -44,6 +46,8 @@ public:
             this->nIdx++;
         }
     }
+
+    //getting element
     int getElem(int idx){
         
         if(idx<nIdx){
