@@ -37,14 +37,12 @@ public:
             for(int i = 0;i<size;i++){
                 nArr[i]=dArr[i];
             }
+            delete[] dArr;
             dArr=nArr;
             size*=2;            // updating the value of the size
-            dArr[nIdx]=num;     //inserting the element finally
-            this->nIdx++;
-        }else{
-            dArr[nIdx]=num;     //inserting the element normally
-            this->nIdx++;
         }
+        dArr[nIdx]=num;     //inserting the element normally
+        this->nIdx++;
     }
 
     //getting element
@@ -56,5 +54,13 @@ public:
             return -1;
         }
     }
+
+    //printing
+    void print() const {
+		for(int i = 0; i < nIdx; i++) {
+			cout << dArr[i] << " ";
+		}
+		cout << endl;
+	}
  
 };
