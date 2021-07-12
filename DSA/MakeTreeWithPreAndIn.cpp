@@ -16,13 +16,13 @@ class BinaryTreeNode {
 };
 
 using namespace std;
-BinaryTreeNode<int>* returnTree(int *pre,int *in,int preS,int preE,int inS,int inE){
+BinaryTreeNode<int>* returnTree(int *post,int *in,int poS,int poE,int inS,int inE){
     //Base case
-    if (preS>preE) {
+    if (inS>inE) {
         return NULL;
     }
     int rootIndex = -1;
-    int rootData =pre[preS];
+    int rootData =post[poE];
     for (int i =0;i<=inE;i++){
         if(in[i]==rootData){
             rootIndex= i;
@@ -31,21 +31,51 @@ BinaryTreeNode<int>* returnTree(int *pre,int *in,int preS,int preE,int inS,int i
     }
     int linS=inS;
     int linE=rootIndex-1;
-    int lpreS=preS+1;
-    int lpreE=linE-linS+lpreS;
+    int lpoS=poS;
+    int lpoE=poS+linE-inS;
     
     int rinS= rootIndex+1;
     int rinE= inE;
-    int rpreS=lpreE+1;
-    int rpreE= preE;
+    int rpoS=poS+linE-inS+1;
+    int rpoE= poE - 1;
     
-    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(pre[preS]);
-    root->left = returnTree(pre,in,lpreS,lpreE,linS,linE);
-    root->right = returnTree(pre,in,rpreS,rpreE,rinS,rinE);
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(rootData);
+    root->left = returnTree(post,in,lpoS,lpoE,linS,linE);
+    root->right = returnTree(post,in,rpoS,rpoE,rinS,rinE);
 
     return root;
 
 }
+// BinaryTreeNode<int>* returnTree(int *pre,int *in,int preS,int preE,int inS,int inE){
+//     //Base case
+//     if (preS>preE) {
+//         return NULL;
+//     }
+//     int rootIndex = -1;
+//     int rootData =pre[preS];
+//     for (int i =0;i<=inE;i++){
+//         if(in[i]==rootData){
+//             rootIndex= i;
+//             break;
+//         }
+//     }
+//     int linS=inS;
+//     int linE=rootIndex-1;
+//     int lpreS=preS+1;
+//     int lpreE=linE-linS+lpreS;
+    
+//     int rinS= rootIndex+1;
+//     int rinE= inE;
+//     int rpreS=lpreE+1;
+//     int rpreE= preE;
+    
+//     BinaryTreeNode<int>* root = new BinaryTreeNode<int>(pre[preS]);
+//     root->left = returnTree(pre,in,lpreS,lpreE,linS,linE);
+//     root->right = returnTree(pre,in,rpreS,rpreE,rinS,rinE);
+
+//     return root;
+
+// }
 
 BinaryTreeNode<int>* buildTree(int *preorder, int preLength, int *inorder, int inLength) {
     // Write your code here
