@@ -1,18 +1,28 @@
 #include<bits/stdc++.h> 
-
+#define ll long long
+#define vi vector<long long>
 using namespace std;
+ll largest(ll n){
+    vi v;
+    while(n!=0){
+       v.push_back(n%10);
+       n/=10; 
+    }
+    sort(v.begin(),v.end(),greater<ll>());
 
+    return v.front();
+}
 int main(){
-    int n = 0,temp,steps=0,num;
+    ll n = 0,steps=0;
     cin>>n;
 
-    vector<int>
-    for(int i = 0; i<n;i++) arr[i];
+    while(n>0){
+        n = n-largest(n);
+        steps++;
+    }
 
+    cout<<steps<<endl;
 
-
-    
-    
 
     return 0;
 }
