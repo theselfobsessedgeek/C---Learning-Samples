@@ -1,6 +1,7 @@
 #include<iostream>
-template <typename T>
+using namespace std;
 
+template <typename T>
 class BinaryTreeNode {
    public:
     T data;
@@ -12,6 +13,8 @@ class BinaryTreeNode {
         left = NULL;
         right = NULL;
     }
+    // write a destructor for node wise deallocation
+
 };
 
 class BST
@@ -122,7 +125,7 @@ class BST
 
     public:
     void print(){
-        printTree(root)
+        printTree(root);
     }
 
 };
